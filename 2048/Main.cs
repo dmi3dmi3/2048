@@ -19,10 +19,33 @@ namespace _2048
         public MainForm()
         {
             InitializeComponent();
+
             table = new GameBoard();
+
+            foreach (Cell cell in table)
+            {
+                cell.Win += new EventHandler(Win);
+            }
+
+            table.Lose += new EventHandler(Lose);
+
             table.Restart();
             ShowTable();
             
+        }
+
+        public void Win(Object sender, EventArgs args)
+        {
+            ShowTable();
+            MessageBox.Show("Выиграно");
+            BtnOnOff(false);
+        }
+
+        public void Lose(object sender, EventArgs args)
+        {
+            ShowTable();
+            MessageBox.Show("Проиграно");
+            BtnOnOff(false);
         }
 
         private void ShowTable()
@@ -50,59 +73,39 @@ namespace _2048
                 lblScore.Text = table.I_Score.ToString();
         }
 
-        private void OnOffBtn(bool flag)
+        private void BtnOnOff(bool flag)
         {
             btnDown.Enabled = flag;
             btnUp.Enabled = flag;
             btnRight.Enabled = flag;
             btnLeft.Enabled = flag;
         }
-        private void EndGame()
-        {
-            if (table.CheckLose())
-            {
-                MessageBox.Show("Проиграно");
-                OnOffBtn(false);
-            }
-            if (table.CheckWin())
-            {
-                MessageBox.Show("Выиграно");
-                OnOffBtn(false);
-            }
-        }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
             table.Move(new Right());
             ShowTable();
-            EndGame();
         }
-
         private void btnLeft_Click(object sender, EventArgs e)
         {
             table.Move(new Left());
             ShowTable();
-            EndGame();
         }
-
         private void btnDown_Click(object sender, EventArgs e)
         {
             table.Move(new Down());
             ShowTable();
-            EndGame();
         }
-
         private void btnUp_Click(object sender, EventArgs e)
         {
             table.Move(new Up());
             ShowTable();
-            EndGame();
         }
 
         private void btnRestart_Click(object sender, EventArgs e)
         {
             table.Restart();
-            OnOffBtn(true);
+            BtnOnOff(true);
             ShowTable();
         }
 
@@ -136,6 +139,18 @@ namespace _2048
             }
             else
                 ShowTable();
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            table.Restart();
+            BtnOnOff(true);
+            ShowTable();
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

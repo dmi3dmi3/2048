@@ -25,6 +25,7 @@ namespace _2048.Classes
             set;
             get;
         }
+        public event EventHandler Win;
 
         public Cell(Cell cell)
         {
@@ -49,6 +50,8 @@ namespace _2048.Classes
         {
             Value *= 2;
             isUpgrated = true;
+            if (Value == 2048)
+                Win(this, new EventArgs());
         }
         public void Fill()
         {

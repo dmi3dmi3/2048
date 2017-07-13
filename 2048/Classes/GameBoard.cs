@@ -7,17 +7,20 @@ using _2048.Interfaces;
 using _2048;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Collections;
 
 namespace _2048.Classes
 {
     class GameBoard
     {
-        Cell[,] board = new Cell[4, 4];
+        private Cell[,] board = new Cell[4, 4];
 
         public GameBoard checkGB;
-        public int I_Score  { private set; get; }
+        public int I_Score { private set; get; }
         public int I_NumCols { get; }
         public int I_NumRows { get; }
+        public event EventHandler Lose;
+
         public Cell this[Coordinate point]
         {
             set { board[point.X, point.Y] = value; }
@@ -28,6 +31,10 @@ namespace _2048.Classes
             set { board[a, b] = value; }
             get { return board[a, b]; }
         }
+        public IEnumerator GetEnumerator()
+        {
+            return board.GetEnumerator();
+        }
 
         public GameBoard()
         {
@@ -36,7 +43,7 @@ namespace _2048.Classes
             I_Score = 0;
             for (int i = 0; i < I_NumCols; i++)
                 for (int j = 0; j < I_NumRows; j++)
-                    board[i,j] = new Cell(false);
+                    board[i, j] = new Cell(false);
         }
         public GameBoard(GameBoard gb)
         {
@@ -49,6 +56,7 @@ namespace _2048.Classes
                     this[i, j] = new Cell(gb[i, j]);
                 }
         }
+
         public int CountEmptyCells()
         {
             int sum=0;
@@ -135,43 +143,9 @@ namespace _2048.Classes
             if (!IsEqualBoards(checkGB))
             {
                 FillCell();
+                if (CountEmptyCells() == 0)
+                    CheckLose();                
             }
-        }
-        public bool CheckWin()
-        {
-            foreach (Cell cell in board)
-                if (cell.Value == 2048)
-                {
-                    return true;
-                    break;
-                }
-            return false;
-        }
-        public bool CheckLose()
-        {
-            if (CountEmptyCells() == 0)
-            {
-                GameBoard tmp;
-
-                tmp = new GameBoard(this);
-                tmp.Move(new Right());
-                if (!tmp.IsEqualBoards(this)) return false;
-
-                tmp = new GameBoard(this);
-                tmp.Move(new Left());
-                if (!tmp.IsEqualBoards(this)) return false;
-
-                tmp = new GameBoard(this);
-                tmp.Move(new Up());
-                if (!tmp.IsEqualBoards(this)) return false;
-
-                tmp = new GameBoard(this);
-                tmp.Move(new Down());
-                if (!tmp.IsEqualBoards(this)) return false;
-
-                return true;
-            }
-            return false;
         }
         public bool IsEqualBoards(GameBoard gb) 
         {
@@ -191,6 +165,28 @@ namespace _2048.Classes
             {
                 cell.isUpgrated = false;
             }
-        }
+        } 
+        
+        public void CheckLose()
+        {
+            Down down = new Down();
+            Right right = new Right();
+            for (int i = 0; i < I_NumCols; i++)
+                for (int j = 0; j < I_NumRows; j++)
+                {
+                    Coordinate cur = new Coordinate(i, j);
+                    if (IsWalkable(down.Get(cur)))
+                        if (this[cur].Value == this[down.Get(cur)].Value)
+                        {
+                            return;
+                        }
+                    if (IsWalkable(right.Get(cur)))
+                        if (this[cur].Value == this[right.Get(cur)].Value)
+                        {
+                            return;
+                        }
+                }
+            Lose(this, new EventArgs());
+        }      
     }
 }
