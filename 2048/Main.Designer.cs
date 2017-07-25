@@ -48,11 +48,6 @@
             this.lbl00 = new System.Windows.Forms.Label();
             this.lblTextScore = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnRestart = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +77,7 @@
             this.panel1.Controls.Add(this.lbl02);
             this.panel1.Controls.Add(this.lbl01);
             this.panel1.Controls.Add(this.lbl00);
-            this.panel1.Location = new System.Drawing.Point(12, 31);
+            this.panel1.Location = new System.Drawing.Point(12, 51);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.MaximumSize = new System.Drawing.Size(334, 334);
             this.panel1.MinimumSize = new System.Drawing.Size(334, 334);
@@ -102,7 +97,6 @@
             this.lbl33.Name = "lbl33";
             this.lbl33.Size = new System.Drawing.Size(80, 80);
             this.lbl33.TabIndex = 16;
-            this.lbl33.Text = "2048";
             this.lbl33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl32
@@ -116,7 +110,6 @@
             this.lbl32.Name = "lbl32";
             this.lbl32.Size = new System.Drawing.Size(80, 80);
             this.lbl32.TabIndex = 15;
-            this.lbl32.Text = "16";
             this.lbl32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl31
@@ -130,7 +123,6 @@
             this.lbl31.Name = "lbl31";
             this.lbl31.Size = new System.Drawing.Size(80, 80);
             this.lbl31.TabIndex = 14;
-            this.lbl31.Text = "8";
             this.lbl31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl30
@@ -144,7 +136,6 @@
             this.lbl30.Name = "lbl30";
             this.lbl30.Size = new System.Drawing.Size(80, 80);
             this.lbl30.TabIndex = 13;
-            this.lbl30.Text = "2";
             this.lbl30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl23
@@ -158,7 +149,6 @@
             this.lbl23.Name = "lbl23";
             this.lbl23.Size = new System.Drawing.Size(80, 80);
             this.lbl23.TabIndex = 12;
-            this.lbl23.Text = "1024";
             this.lbl23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl22
@@ -172,7 +162,6 @@
             this.lbl22.Name = "lbl22";
             this.lbl22.Size = new System.Drawing.Size(80, 80);
             this.lbl22.TabIndex = 11;
-            this.lbl22.Text = "32";
             this.lbl22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl21
@@ -186,7 +175,6 @@
             this.lbl21.Name = "lbl21";
             this.lbl21.Size = new System.Drawing.Size(80, 80);
             this.lbl21.TabIndex = 10;
-            this.lbl21.Text = "4";
             this.lbl21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl20
@@ -200,7 +188,6 @@
             this.lbl20.Name = "lbl20";
             this.lbl20.Size = new System.Drawing.Size(80, 80);
             this.lbl20.TabIndex = 9;
-            this.lbl20.Text = "2";
             this.lbl20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl13
@@ -214,7 +201,6 @@
             this.lbl13.Name = "lbl13";
             this.lbl13.Size = new System.Drawing.Size(80, 80);
             this.lbl13.TabIndex = 8;
-            this.lbl13.Text = "512";
             this.lbl13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl12
@@ -228,7 +214,6 @@
             this.lbl12.Name = "lbl12";
             this.lbl12.Size = new System.Drawing.Size(80, 80);
             this.lbl12.TabIndex = 7;
-            this.lbl12.Text = "64";
             this.lbl12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl11
@@ -242,7 +227,6 @@
             this.lbl11.Name = "lbl11";
             this.lbl11.Size = new System.Drawing.Size(80, 80);
             this.lbl11.TabIndex = 6;
-            this.lbl11.Text = "2";
             this.lbl11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl10
@@ -256,7 +240,6 @@
             this.lbl10.Name = "lbl10";
             this.lbl10.Size = new System.Drawing.Size(80, 80);
             this.lbl10.TabIndex = 5;
-            this.lbl10.Text = "2";
             this.lbl10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl03
@@ -270,7 +253,6 @@
             this.lbl03.Name = "lbl03";
             this.lbl03.Size = new System.Drawing.Size(80, 80);
             this.lbl03.TabIndex = 4;
-            this.lbl03.Text = "256";
             this.lbl03.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl02
@@ -284,7 +266,6 @@
             this.lbl02.Name = "lbl02";
             this.lbl02.Size = new System.Drawing.Size(80, 80);
             this.lbl02.TabIndex = 3;
-            this.lbl02.Text = "128";
             this.lbl02.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl01
@@ -298,7 +279,6 @@
             this.lbl01.Name = "lbl01";
             this.lbl01.Size = new System.Drawing.Size(80, 80);
             this.lbl01.TabIndex = 2;
-            this.lbl01.Text = "2";
             this.lbl01.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl00
@@ -312,13 +292,12 @@
             this.lbl00.Name = "lbl00";
             this.lbl00.Size = new System.Drawing.Size(80, 80);
             this.lbl00.TabIndex = 1;
-            this.lbl00.Text = "2";
             this.lbl00.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblTextScore
             // 
             this.lblTextScore.AutoSize = true;
-            this.lblTextScore.Location = new System.Drawing.Point(380, 35);
+            this.lblTextScore.Location = new System.Drawing.Point(12, 29);
             this.lblTextScore.Name = "lblTextScore";
             this.lblTextScore.Size = new System.Drawing.Size(38, 13);
             this.lblTextScore.TabIndex = 1;
@@ -330,72 +309,25 @@
             this.lblScore.AutoSize = true;
             this.lblScore.BackColor = System.Drawing.SystemColors.Window;
             this.lblScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblScore.Location = new System.Drawing.Point(424, 35);
+            this.lblScore.Location = new System.Drawing.Point(56, 29);
             this.lblScore.MinimumSize = new System.Drawing.Size(40, 15);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(40, 15);
             this.lblScore.TabIndex = 2;
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnUp
-            // 
-            this.btnUp.Location = new System.Drawing.Point(424, 161);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(50, 50);
-            this.btnUp.TabIndex = 3;
-            this.btnUp.Text = "Up";
-            this.btnUp.UseVisualStyleBackColor = true;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.Location = new System.Drawing.Point(424, 217);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(50, 50);
-            this.btnDown.TabIndex = 4;
-            this.btnDown.Text = "Down";
-            this.btnDown.UseVisualStyleBackColor = true;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.Location = new System.Drawing.Point(368, 217);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(50, 50);
-            this.btnLeft.TabIndex = 5;
-            this.btnLeft.Text = "Left";
-            this.btnLeft.UseVisualStyleBackColor = true;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
-            // 
-            // btnRight
-            // 
-            this.btnRight.Location = new System.Drawing.Point(480, 217);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(50, 50);
-            this.btnRight.TabIndex = 6;
-            this.btnRight.Text = "Right";
-            this.btnRight.UseVisualStyleBackColor = true;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
-            // 
-            // btnRestart
-            // 
-            this.btnRestart.Location = new System.Drawing.Point(368, 331);
-            this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(162, 30);
-            this.btnRestart.TabIndex = 7;
-            this.btnRestart.Text = "Restart";
-            this.btnRestart.UseVisualStyleBackColor = true;
-            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(363, 96);
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(129, 28);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 17);
             this.checkBox1.TabIndex = 8;
+            this.checkBox1.TabStop = false;
             this.checkBox1.Text = "Show previous";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // menuStrip1
@@ -404,7 +336,7 @@
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(560, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(354, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -422,14 +354,14 @@
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.ShortcutKeyDisplayString = "F2";
             this.restartToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -437,13 +369,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 392);
+            this.ClientSize = new System.Drawing.Size(354, 392);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.btnRestart);
-            this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.btnLeft);
-            this.Controls.Add(this.btnDown);
-            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblTextScore);
             this.Controls.Add(this.panel1);
@@ -454,6 +381,8 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "2048";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -484,11 +413,6 @@
         private System.Windows.Forms.Label lbl00;
         private System.Windows.Forms.Label lblTextScore;
         private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Button btnUp;
-        private System.Windows.Forms.Button btnDown;
-        private System.Windows.Forms.Button btnLeft;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;

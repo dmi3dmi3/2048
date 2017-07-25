@@ -8,6 +8,7 @@ using _2048;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Collections;
+using System.Drawing;
 
 namespace _2048.Classes
 {
@@ -21,7 +22,7 @@ namespace _2048.Classes
         public int I_NumRows { get; }
         public event EventHandler Lose;
 
-        public Cell this[Coordinate point]
+        public Cell this[Point point]
         {
             set { board[point.X, point.Y] = value; }
             get { return board[point.X, point.Y]; }
@@ -97,14 +98,14 @@ namespace _2048.Classes
             FillCell();
             FillCell();
         }
-        public bool CheckEmpty(Coordinate p)
+        public bool CheckEmpty(Point p)
         {
             if (IsWalkable(p))
                 return this[p].IsEmpty();
             else
                 return false;
         }
-        public bool IsWalkable(Coordinate p)
+        public bool IsWalkable(Point p)
         {
             if (p.X < 0 || p.X > 3 || p.Y < 0 || p.Y > 3)
                 return false;
@@ -112,7 +113,7 @@ namespace _2048.Classes
         }
         public void Move(ISides side)
         {
-            Coordinate cur = new Coordinate(); //current
+            Point cur = new Point(); //current
             Cell tmp; //temporary
             I_Score -= 1;
             ClearUpgrates();
@@ -120,7 +121,8 @@ namespace _2048.Classes
             for (int i = side.X1; side.Check(i); i = side.Change(i) )
                 for(int j = side.Y1; side.Check(j); j = side.Change(j))
                 {
-                    cur.Set(i, j);
+                    cur.X = i;
+                    cur.Y = j;                    
                     if (this[cur].IsFull)
                     {
                         while (CheckEmpty(side.Get(cur)))
@@ -174,7 +176,7 @@ namespace _2048.Classes
             for (int i = 0; i < I_NumCols; i++)
                 for (int j = 0; j < I_NumRows; j++)
                 {
-                    Coordinate cur = new Coordinate(i, j);
+                    Point cur = new Point(i, j);
                     if (IsWalkable(down.Get(cur)))
                         if (this[cur].Value == this[down.Get(cur)].Value)
                         {

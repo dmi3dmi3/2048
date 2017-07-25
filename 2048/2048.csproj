@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Cell.cs" />
-    <Compile Include="Classes\Coordinate.cs" />
     <Compile Include="Classes\Down.cs" />
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Left.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -85,6 +85,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_16.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_32.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_64.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_128.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_265.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_512.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_1024.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_2048.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_0.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

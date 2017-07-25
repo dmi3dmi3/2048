@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _2048.Interfaces;
+using System.Drawing;
 
 namespace _2048.Classes
 {
@@ -25,9 +26,9 @@ namespace _2048.Classes
         {
             return i <= X2;
         }
-        public Coordinate Get(Coordinate p)
+        public Point Get(Point p)
         {
-            return new Coordinate(p.X - 1, p.Y);
+            return new Point(p.X - 1, p.Y);
         }
         public int Change(int i)
         {
