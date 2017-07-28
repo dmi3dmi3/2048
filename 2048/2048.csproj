@@ -50,6 +50,7 @@
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Left.cs" />
     <Compile Include="Classes\Right.cs" />
+    <Compile Include="Classes\SaveBuffer.cs" />
     <Compile Include="Classes\Up.cs" />
     <Compile Include="Interfaces\ISides.cs" />
     <Compile Include="Main.cs">
@@ -124,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\_0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_4096.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

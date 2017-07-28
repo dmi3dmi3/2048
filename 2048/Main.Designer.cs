@@ -53,6 +53,9 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblRecord = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.clearRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -320,7 +323,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(129, 28);
+            this.checkBox1.Location = new System.Drawing.Point(109, 384);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 17);
             this.checkBox1.TabIndex = 8;
@@ -344,6 +347,7 @@
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.restartToolStripMenuItem,
+            this.clearRecordToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -354,22 +358,54 @@
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.ShortcutKeyDisplayString = "F2";
             this.restartToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.closeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // lblRecord
+            // 
+            this.lblRecord.AutoSize = true;
+            this.lblRecord.BackColor = System.Drawing.SystemColors.Window;
+            this.lblRecord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRecord.Location = new System.Drawing.Point(173, 29);
+            this.lblRecord.MinimumSize = new System.Drawing.Size(40, 15);
+            this.lblRecord.Name = "lblRecord";
+            this.lblRecord.Size = new System.Drawing.Size(40, 15);
+            this.lblRecord.TabIndex = 11;
+            this.lblRecord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(129, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Record:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // clearRecordToolStripMenuItem
+            // 
+            this.clearRecordToolStripMenuItem.Name = "clearRecordToolStripMenuItem";
+            this.clearRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearRecordToolStripMenuItem.Text = "Reset record";
+            this.clearRecordToolStripMenuItem.Click += new System.EventHandler(this.clearRecordToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 392);
+            this.Controls.Add(this.lblRecord);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblTextScore);
@@ -381,6 +417,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "2048";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.panel1.ResumeLayout(false);
@@ -418,6 +455,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.Label lblRecord;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem clearRecordToolStripMenuItem;
     }
 }
 

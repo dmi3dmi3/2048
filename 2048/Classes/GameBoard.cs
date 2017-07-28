@@ -12,14 +12,15 @@ using System.Drawing;
 
 namespace _2048.Classes
 {
-    class GameBoard
+    class GameBoard: ICloneable
     {
-        private Cell[,] board = new Cell[4, 4];
-
+        public Cell[,] board = new Cell[4, 4];
         public GameBoard checkGB;
         public int I_Score { private set; get; }
-        public int I_NumCols { get; }
-        public int I_NumRows { get; }
+        public int I_BestScore { private set; get; }
+        public int I_NumCols { private set; get; }
+        public int I_NumRows { private set; get; }
+        public int MaxValue = 4096-1;
         public event EventHandler Lose;
 
         public Cell this[Point point]
@@ -42,22 +43,35 @@ namespace _2048.Classes
             I_NumCols = 4;
             I_NumRows = 4;
             I_Score = 0;
+            I_BestScore = 0;
             for (int i = 0; i < I_NumCols; i++)
                 for (int j = 0; j < I_NumRows; j++)
                     board[i, j] = new Cell(false);
         }
-        public GameBoard(GameBoard gb)
+        public GameBoard(SaveBuffer sb)
         {
-            I_NumCols = gb.I_NumCols;
-            I_NumRows = gb.I_NumRows;
-            I_Score = gb.I_Score;
-            for (int i = 0; i < I_NumRows; i++)
-                for (int j = 0; j < I_NumCols; j++)
+            I_Score = sb.I_SaveScore;
+            I_BestScore = sb.I_SaveBestScore;
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
-                    this[i, j] = new Cell(gb[i, j]);
+                    this[i, j] = new Cell(sb.SaveBoard[i, j]);
                 }
         }
 
+        public object Clone()
+        {
+            GameBoard gb = new GameBoard();
+            gb.I_Score = this.I_Score;
+            gb.I_NumCols = this.I_NumCols;
+            gb.I_NumRows = this.I_NumRows;
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                {
+                    gb[i, j] = (Cell)this[i, j].Clone();
+                }
+            return gb;
+        }
         public int CountEmptyCells()
         {
             int sum=0;
@@ -77,8 +91,7 @@ namespace _2048.Classes
             foreach (Cell cell in board)
             {
                 if (cell.IsEmpty())
-                {
-                    
+                {                    
                     if (num == 0)
                     {                      
                         cell.Fill();
@@ -117,7 +130,7 @@ namespace _2048.Classes
             Cell tmp; //temporary
             I_Score -= 1;
             ClearUpgrates();
-            checkGB = new GameBoard(this);
+            checkGB =  (GameBoard)this.Clone();//new GameBoard(this);
             for (int i = side.X1; side.Check(i); i = side.Change(i) )
                 for(int j = side.Y1; side.Check(j); j = side.Change(j))
                 {
@@ -133,7 +146,7 @@ namespace _2048.Classes
                             cur = side.Get(cur);
                         }
                         if (IsWalkable(side.Get(cur)))
-                            if (this[cur].Value == this[side.Get(cur)].Value && !this[side.Get(cur)].isUpgrated)
+                            if (this[cur].Value == this[side.Get(cur)].Value && !this[side.Get(cur)].isUpgrated && this[cur].Value< MaxValue)
                             {
                                 this[side.Get(cur)].Upgrade();
                                 this[cur].Clear();
@@ -148,11 +161,13 @@ namespace _2048.Classes
                 if (CountEmptyCells() == 0)
                     CheckLose();                
             }
+            if (I_Score > I_BestScore)
+                I_BestScore = I_Score;
         }
         public bool IsEqualBoards(GameBoard gb) 
         {
-            for (int i = 0; i < I_NumRows; i++)
-                for (int j = 0; j < I_NumCols; j++)
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
                     if (this[i, j].Value != gb[i, j].Value)
                     {
@@ -168,27 +183,35 @@ namespace _2048.Classes
                 cell.isUpgrated = false;
             }
         } 
-        
         public void CheckLose()
         {
             Down down = new Down();
             Right right = new Right();
-            for (int i = 0; i < I_NumCols; i++)
-                for (int j = 0; j < I_NumRows; j++)
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
                 {
                     Point cur = new Point(i, j);
-                    if (IsWalkable(down.Get(cur)))
-                        if (this[cur].Value == this[down.Get(cur)].Value)
-                        {
-                            return;
-                        }
-                    if (IsWalkable(right.Get(cur)))
-                        if (this[cur].Value == this[right.Get(cur)].Value)
-                        {
-                            return;
-                        }
+                    if (this[cur].Value < MaxValue)
+                    {
+                        if (IsWalkable(down.Get(cur)))
+                            if (this[cur].Value == this[down.Get(cur)].Value)
+                            {
+                                return;
+                            }
+                        if (IsWalkable(right.Get(cur)))
+                            if (this[cur].Value == this[right.Get(cur)].Value)
+                            {
+                                return;
+                            }
+                    }
                 }
+
             Lose(this, new EventArgs());
-        }      
+        }
+        public void ResetRecord()
+        {
+            I_BestScore = 0;
+        }
+
     }
 }

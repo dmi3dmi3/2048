@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using _2048.Classes;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace _2048
 {
@@ -19,35 +21,50 @@ namespace _2048
         {
             InitializeComponent();
 
-            table = new GameBoard();
+            try
+            {           
+                FileStream fs = new FileStream("save.dat", FileMode.Open, FileAccess.Read);
+                BinaryFormatter bf = new BinaryFormatter();
+                SaveBuffer sb = (SaveBuffer)bf.Deserialize(fs);
+                table = new GameBoard(sb);
+            }
+            catch (Exception)
+            {
+                table = new GameBoard();
+                table.Restart();
+            }
 
             foreach (Cell cell in table)
             {
-                cell.Win += new EventHandler(Win);
+                cell.Win += Win;
             }
 
-            table.Lose += new EventHandler(Lose);
+            table.Lose += Lose;
 
-            table.Restart();
             ShowTable();
         }
 
+        bool endGameFlag = false;
+        bool winFlag = false;
+        bool singleWinFlag = true;
         public void Win(Object sender, EventArgs args)
         {
-            ShowTable();
-            MessageBox.Show("Выиграно");
+            winFlag = true;
         }
 
         public void Lose(object sender, EventArgs args)
         {
+            endGameFlag = true;
             ShowTable();
-            MessageBox.Show("Проиграно");
+            MessageBox.Show("Game Over");
         }
 
         private Image ValueImage(int value)
         {
             switch (value)
             {
+                case 0:
+                    return _2048.Properties.Resources._0;
                 case 2:
                     return _2048.Properties.Resources._2;
                 case 4:
@@ -70,8 +87,10 @@ namespace _2048
                     return _2048.Properties.Resources._1024;
                 case 2048:
                     return _2048.Properties.Resources._2048;
+                case 4096:
+                    return _2048.Properties.Resources._4096;
             }
-            return _2048.Properties.Resources._0;
+            return _2048.Properties.Resources.Error;
         }
 
         private void ShowTable()
@@ -97,8 +116,8 @@ namespace _2048
             lbl33.Image = ValueImage(table[3, 3].Value);
 
             lblScore.Text = table.I_Score.ToString();
+            lblRecord.Text = table.I_BestScore.ToString();
         }
-
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -137,95 +156,83 @@ namespace _2048
             table.Restart();
             ShowTable();
         }
-
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
+
         bool flag = true;
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (flag)
+            if (flag && !endGameFlag)
             switch (e.KeyCode)
             {
                 case Keys.Down:
+                case Keys.S:
                     table.Move(new Down());
                     ShowTable();
                     flag = false;
                     break;
                 case Keys.Up:
+                case Keys.W:
                     table.Move(new Up());
                     ShowTable();
                     flag = false;
                     break;
                 case Keys.Left:
+                case Keys.A:
                     table.Move(new Left());
                     ShowTable();
                     flag = false;
                     break;
                 case Keys.Right:
+                case Keys.D:
                     table.Move(new Right());
                     ShowTable();
                     flag = false;
                     break;
             }
+            if (winFlag && singleWinFlag)
+            {
+                ShowTable();
+                MessageBox.Show("    You win \nContinue playing");
+                singleWinFlag = false;
+            }
         }
-
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             flag = true;
         }
 
-        /*
-        const int WM_KEYDOWN = 0x100;
-        const int WM_KEYUP = 0x101;
-
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (msg.Msg == WM_KEYUP)
+            SaveBuffer sb = new SaveBuffer(table);
+            FileStream fs;
+            try
             {
-                MessageBox.Show("1");
+                fs = new FileStream("save.dat", FileMode.Truncate, FileAccess.Write);
+            }
+            catch (Exception)
+            {
+                fs = new FileStream("save.dat", FileMode.Create, FileAccess.Write);
             }
 
-            if ((msg.Msg == WM_KEYDOWN) && flag)
+            BinaryFormatter bf = new BinaryFormatter();
+            try
             {
-                switch (keyData)
-                {
-                    case Keys.Down:
-                        table.Move(new Down());
-                        ShowTable();
-                        flag = false;
-                        break;
-                    case Keys.Up:
-                        table.Move(new Up());
-                        ShowTable();
-                        flag = false;
-                        break;
-                    case Keys.Left:
-                        table.Move(new Left());
-                        ShowTable();
-                        flag = false;
-                        break;
-                    case Keys.Right:
-                        table.Move(new Right());
-                        ShowTable();
-                        flag = false;
-                        break;
-                }
+                bf.Serialize(fs, sb);
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+            catch (Exception)
+            {
+                MessageBox.Show("Сохранение результата не удалось");
+            }
+            fs.Close();
         }
 
-        public bool PreFilterMessage(ref Message msg)
+        private void clearRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((msg.Msg == WM_KEYUP))
-            {
-                flag = true;
-                return true;
-            }
-            return false;
+            table.ResetRecord();
+            ShowTable();
         }
-        */
     }
 }

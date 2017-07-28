@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace _2048.Classes
 {
-    class Cell
+    class Cell: ICloneable
     {
         public int Value
         {
@@ -27,20 +27,33 @@ namespace _2048.Classes
         }
         public event EventHandler Win;
 
-        public Cell(Cell cell)
-        {
-            this.IsFull = cell.IsFull;
-            this.Value = cell.Value;
-            this.isUpgrated = cell.isUpgrated;
-        }
         public Cell(bool full)
         {
             IsFull = full;
             if (full)
-            {
                 Value = RandValue();
-            }
+            else
+                Value = 0;
             isUpgrated = false;
+        }
+        public Cell(int val)
+        {
+            if (val != 0)
+            {
+                IsFull = true;
+                Value = val;
+            }else
+            {
+                IsFull = false;
+                Value = 0;
+            }
+        }
+
+        public object Clone()
+        {
+            Cell cell = new Cell(this.Value);
+            cell.isUpgrated = this.isUpgrated;
+            return cell;
         }
         public bool IsEmpty()
         {
