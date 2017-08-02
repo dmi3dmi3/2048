@@ -210,23 +210,24 @@ namespace _2048
             FileStream fs;
             try
             {
-                fs = new FileStream("save.dat", FileMode.Truncate, FileAccess.Write);
-            }
-            catch (Exception)
-            {
-                fs = new FileStream("save.dat", FileMode.Create, FileAccess.Write);
-            }
+                try
+                {
+                    fs = new FileStream("save.dat", FileMode.Truncate, FileAccess.Write);
+                }
+                catch (Exception)
+                {
+                    fs = new FileStream("save.dat", FileMode.Create, FileAccess.Write);
+                }
 
-            BinaryFormatter bf = new BinaryFormatter();
-            try
-            {
+                BinaryFormatter bf = new BinaryFormatter();
+
                 bf.Serialize(fs, sb);
+                fs.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("Сохранение результата не удалось");
-            }
-            fs.Close();
+            }        
         }
 
         private void clearRecordToolStripMenuItem_Click(object sender, EventArgs e)

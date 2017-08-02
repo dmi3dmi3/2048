@@ -313,12 +313,12 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.BackColor = System.Drawing.SystemColors.Window;
+            this.lblScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblScore.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblScore.Image = global::_2048.Properties.Resources.BG;
             this.lblScore.Location = new System.Drawing.Point(98, 29);
             this.lblScore.MinimumSize = new System.Drawing.Size(40, 15);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(40, 23);
+            this.lblScore.Size = new System.Drawing.Size(40, 25);
             this.lblScore.TabIndex = 2;
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
