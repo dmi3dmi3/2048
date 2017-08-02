@@ -52,10 +52,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblRecord = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.clearRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +80,7 @@
             this.panel1.Controls.Add(this.lbl02);
             this.panel1.Controls.Add(this.lbl01);
             this.panel1.Controls.Add(this.lbl00);
-            this.panel1.Location = new System.Drawing.Point(12, 51);
+            this.panel1.Location = new System.Drawing.Point(12, 63);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.MaximumSize = new System.Drawing.Size(334, 334);
             this.panel1.MinimumSize = new System.Drawing.Size(334, 334);
@@ -300,9 +300,11 @@
             // lblTextScore
             // 
             this.lblTextScore.AutoSize = true;
+            this.lblTextScore.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTextScore.Image = global::_2048.Properties.Resources.BG;
             this.lblTextScore.Location = new System.Drawing.Point(12, 29);
             this.lblTextScore.Name = "lblTextScore";
-            this.lblTextScore.Size = new System.Drawing.Size(38, 13);
+            this.lblTextScore.Size = new System.Drawing.Size(73, 23);
             this.lblTextScore.TabIndex = 1;
             this.lblTextScore.Text = "Score:";
             this.lblTextScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -311,11 +313,12 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.BackColor = System.Drawing.SystemColors.Window;
-            this.lblScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblScore.Location = new System.Drawing.Point(56, 29);
+            this.lblScore.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblScore.Image = global::_2048.Properties.Resources.BG;
+            this.lblScore.Location = new System.Drawing.Point(98, 29);
             this.lblScore.MinimumSize = new System.Drawing.Size(40, 15);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(40, 15);
+            this.lblScore.Size = new System.Drawing.Size(40, 23);
             this.lblScore.TabIndex = 2;
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -323,7 +326,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(109, 384);
+            this.checkBox1.Location = new System.Drawing.Point(109, 396);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(96, 17);
             this.checkBox1.TabIndex = 8;
@@ -335,6 +338,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackgroundImage = global::_2048.Properties.Resources.BG;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -358,15 +362,22 @@
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.ShortcutKeyDisplayString = "F2";
             this.restartToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
+            // 
+            // clearRecordToolStripMenuItem
+            // 
+            this.clearRecordToolStripMenuItem.Name = "clearRecordToolStripMenuItem";
+            this.clearRecordToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.clearRecordToolStripMenuItem.Text = "Reset record";
+            this.clearRecordToolStripMenuItem.Click += new System.EventHandler(this.clearRecordToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -375,35 +386,32 @@
             this.lblRecord.AutoSize = true;
             this.lblRecord.BackColor = System.Drawing.SystemColors.Window;
             this.lblRecord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRecord.Location = new System.Drawing.Point(173, 29);
+            this.lblRecord.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblRecord.Location = new System.Drawing.Point(262, 29);
             this.lblRecord.MinimumSize = new System.Drawing.Size(40, 15);
             this.lblRecord.Name = "lblRecord";
-            this.lblRecord.Size = new System.Drawing.Size(40, 15);
+            this.lblRecord.Size = new System.Drawing.Size(40, 25);
             this.lblRecord.TabIndex = 11;
             this.lblRecord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(129, 29);
+            this.label2.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Image = global::_2048.Properties.Resources.BG;
+            this.label2.Location = new System.Drawing.Point(176, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(85, 23);
             this.label2.TabIndex = 10;
             this.label2.Text = "Record:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // clearRecordToolStripMenuItem
-            // 
-            this.clearRecordToolStripMenuItem.Name = "clearRecordToolStripMenuItem";
-            this.clearRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.clearRecordToolStripMenuItem.Text = "Reset record";
-            this.clearRecordToolStripMenuItem.Click += new System.EventHandler(this.clearRecordToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 392);
+            this.BackgroundImage = global::_2048.Properties.Resources.BG;
+            this.ClientSize = new System.Drawing.Size(354, 400);
             this.Controls.Add(this.lblRecord);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
