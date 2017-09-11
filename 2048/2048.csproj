@@ -49,6 +49,7 @@
     <Compile Include="Classes\Down.cs" />
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Left.cs" />
+    <Compile Include="Classes\MyRandom.cs" />
     <Compile Include="Classes\Right.cs" />
     <Compile Include="Classes\SaveBuffer.cs" />
     <Compile Include="Classes\Up.cs" />

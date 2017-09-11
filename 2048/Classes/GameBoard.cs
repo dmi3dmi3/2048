@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using _2048.Interfaces;
 using _2048;
 using System.Windows.Forms;
-using System.Security.Cryptography;
 using System.Collections;
 using System.Drawing;
 
@@ -84,10 +83,7 @@ namespace _2048.Classes
         }
         public void FillCell()
         {
-            RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-            byte[] randomNumber = new byte[1];
-            new RNGCryptoServiceProvider().GetBytes(randomNumber);
-            int num = randomNumber[0] % CountEmptyCells();
+            int num = MyRandom.RandomInt(CountEmptyCells());
             foreach (Cell cell in board)
             {
                 if (cell.IsEmpty())

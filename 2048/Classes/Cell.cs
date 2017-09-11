@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,10 +77,8 @@ namespace _2048.Classes
         }
         private int RandValue()
         {
-            RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-            byte[] randomNumber = new byte[1];
-            new RNGCryptoServiceProvider().GetBytes(randomNumber);
-            if ((byte)((randomNumber[0] % 10)) == 0)
+
+            if (MyRandom.RandomInt(10) == 0)
             {
                 return 4;
             }
