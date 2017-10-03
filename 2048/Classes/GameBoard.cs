@@ -83,7 +83,7 @@ namespace _2048.Classes
         }
         public void FillCell()
         {
-            int num = MyRandom.RandomInt(CountEmptyCells());
+            int num = SimpleRandom.MyRandom.RandomInt(CountEmptyCells());
             foreach (Cell cell in board)
             {
                 if (cell.IsEmpty())

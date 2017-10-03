@@ -78,7 +78,7 @@ namespace _2048.Classes
         private int RandValue()
         {
 
-            if (MyRandom.RandomInt(10) == 0)
+            if (SimpleRandom.MyRandom.RandomInt(10) == 0)
             {
                 return 4;
             }

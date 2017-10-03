@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>_2048</RootNamespace>
     <AssemblyName>2048</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleRandom">
+      <HintPath>..\..\Libraries\SimpleRandom\SimpleRandom\bin\Release\SimpleRandom.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,7 +53,6 @@
     <Compile Include="Classes\Down.cs" />
     <Compile Include="Classes\GameBoard.cs" />
     <Compile Include="Classes\Left.cs" />
-    <Compile Include="Classes\MyRandom.cs" />
     <Compile Include="Classes\Right.cs" />
     <Compile Include="Classes\SaveBuffer.cs" />
     <Compile Include="Classes\Up.cs" />
