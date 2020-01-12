@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using _2048.Classes;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
+using _2048.Classes;
+using _2048.Properties;
 
 namespace _2048
 {
-    public partial class MainForm: System.Windows.Forms.Form
+    public partial class MainForm: Form
     {
-        private GameBoard table;
+        private readonly GameBoard _table;
 
         public MainForm()
         {
@@ -26,35 +21,33 @@ namespace _2048
                 FileStream fs = new FileStream("save.dat", FileMode.Open, FileAccess.Read);
                 BinaryFormatter bf = new BinaryFormatter();
                 SaveBuffer sb = (SaveBuffer)bf.Deserialize(fs);
-                table = new GameBoard(sb);
+                _table = new GameBoard(sb);
             }
             catch (Exception)
             {
-                table = new GameBoard();
-                table.Restart();
+                _table = new GameBoard();
+                _table.Restart();
             }
 
-            foreach (Cell cell in table)
-            {
+            foreach (Cell cell in _table)
                 cell.Win += Win;
-            }
 
-            table.Lose += Lose;
+            _table.Lose += Lose;
 
             ShowTable();
         }
 
-        bool endGameFlag = false;
-        bool winFlag = false;
-        bool singleWinFlag = true;
+        private bool _endGameFlag;
+        private bool _winFlag;
+        bool _singleWinFlag = true;
         public void Win(Object sender, EventArgs args)
         {
-            winFlag = true;
+            _winFlag = true;
         }
 
         public void Lose(object sender, EventArgs args)
         {
-            endGameFlag = true;
+            _endGameFlag = true;
             ShowTable();
             MessageBox.Show("Game Over");
         }
@@ -64,67 +57,66 @@ namespace _2048
             switch (value)
             {
                 case 0:
-                    return _2048.Properties.Resources._0;
+                    return Resources._0;
                 case 2:
-                    return _2048.Properties.Resources._2;
+                    return Resources._2;
                 case 4:
-                    return _2048.Properties.Resources._4;
+                    return Resources._4;
                 case 8:
-                    return _2048.Properties.Resources._8;
+                    return Resources._8;
                 case 16:
-                    return _2048.Properties.Resources._16;
+                    return Resources._16;
                 case 32:
-                    return _2048.Properties.Resources._32;
+                    return Resources._32;
                 case 64:
-                    return _2048.Properties.Resources._64;
+                    return Resources._64;
                 case 128:
-                    return _2048.Properties.Resources._128;
+                    return Resources._128;
                 case 256:
-                    return _2048.Properties.Resources._256;
+                    return Resources._256;
                 case 512:
-                    return _2048.Properties.Resources._512;
+                    return Resources._512;
                 case 1024:
-                    return _2048.Properties.Resources._1024;
+                    return Resources._1024;
                 case 2048:
-                    return _2048.Properties.Resources._2048;
+                    return Resources._2048;
                 case 4096:
-                    return _2048.Properties.Resources._4096;
+                    return Resources._4096;
             }
-            return _2048.Properties.Resources.Error;
+            return Resources.Error;
         }
 
         private void ShowTable()
         {
-            lbl00.Image = ValueImage(table[0, 0].Value);
-            lbl01.Image = ValueImage(table[0, 1].Value);
-            lbl02.Image = ValueImage(table[0, 2].Value);
-            lbl03.Image = ValueImage(table[0, 3].Value);
+            lbl00.Image = ValueImage(_table[0, 0].Value);
+            lbl01.Image = ValueImage(_table[0, 1].Value);
+            lbl02.Image = ValueImage(_table[0, 2].Value);
+            lbl03.Image = ValueImage(_table[0, 3].Value);
                 
-            lbl10.Image = ValueImage(table[1, 0].Value);
-            lbl11.Image = ValueImage(table[1, 1].Value);
-            lbl12.Image = ValueImage(table[1, 2].Value);
-            lbl13.Image = ValueImage(table[1, 3].Value);
+            lbl10.Image = ValueImage(_table[1, 0].Value);
+            lbl11.Image = ValueImage(_table[1, 1].Value);
+            lbl12.Image = ValueImage(_table[1, 2].Value);
+            lbl13.Image = ValueImage(_table[1, 3].Value);
                  
-            lbl20.Image = ValueImage(table[2, 0].Value);
-            lbl21.Image = ValueImage(table[2, 1].Value);
-            lbl22.Image = ValueImage(table[2, 2].Value);
-            lbl23.Image = ValueImage(table[2, 3].Value);
+            lbl20.Image = ValueImage(_table[2, 0].Value);
+            lbl21.Image = ValueImage(_table[2, 1].Value);
+            lbl22.Image = ValueImage(_table[2, 2].Value);
+            lbl23.Image = ValueImage(_table[2, 3].Value);
                 
-            lbl30.Image = ValueImage(table[3, 0].Value);
-            lbl31.Image = ValueImage(table[3, 1].Value);
-            lbl32.Image = ValueImage(table[3, 2].Value);
-            lbl33.Image = ValueImage(table[3, 3].Value);
+            lbl30.Image = ValueImage(_table[3, 0].Value);
+            lbl31.Image = ValueImage(_table[3, 1].Value);
+            lbl32.Image = ValueImage(_table[3, 2].Value);
+            lbl33.Image = ValueImage(_table[3, 3].Value);
 
-            lblScore.Text = table.I_Score.ToString();
-            lblRecord.Text = table.I_BestScore.ToString();
+            lblScore.Text = _table.Score.ToString();
+            lblRecord.Text = _table.BestScore.ToString();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
-                GameBoard tb;
-                tb = table.checkGB;
+                var tb = _table.CheckGb;
                 lbl00.Text = tb[0, 0].ToString();
                 lbl01.Text = tb[0, 1].ToString();
                 lbl02.Text = tb[0, 2].ToString();
@@ -145,7 +137,7 @@ namespace _2048
                 lbl32.Text = tb[3, 2].ToString();
                 lbl33.Text = tb[3, 3].ToString();
 
-                lblScore.Text = tb.I_Score.ToString();
+                lblScore.Text = tb.Score.ToString();
             }
             else
                 ShowTable();
@@ -153,63 +145,64 @@ namespace _2048
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            table.Restart();
+            _table.Restart();
             ShowTable();
         }
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        bool flag = true;
+        bool _flag = true;
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (flag && !endGameFlag)
+            if (_flag && !_endGameFlag)
             switch (e.KeyCode)
             {
                 case Keys.Down:
                 case Keys.S:
-                    table.Move(new Down());
+                    _table.Move(new Down());
                     ShowTable();
-                    flag = false;
+                    _flag = false;
                     break;
                 case Keys.Up:
                 case Keys.W:
-                    table.Move(new Up());
+                    _table.Move(new Up());
                     ShowTable();
-                    flag = false;
+                    _flag = false;
                     break;
                 case Keys.Left:
                 case Keys.A:
-                    table.Move(new Left());
+                    _table.Move(new Left());
                     ShowTable();
-                    flag = false;
+                    _flag = false;
                     break;
                 case Keys.Right:
                 case Keys.D:
-                    table.Move(new Right());
+                    _table.Move(new Right());
                     ShowTable();
-                    flag = false;
+                    _flag = false;
                     break;
             }
-            if (winFlag && singleWinFlag)
+            if (_winFlag && _singleWinFlag)
             {
                 ShowTable();
                 MessageBox.Show("    You win \nContinue playing");
-                singleWinFlag = false;
+                _singleWinFlag = false;
             }
         }
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
-            flag = true;
+            _flag = true;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveBuffer sb = new SaveBuffer(table);
-            FileStream fs;
+            var sb = new SaveBuffer(_table);
             try
             {
+                FileStream fs;
                 try
                 {
                     fs = new FileStream("save.dat", FileMode.Truncate, FileAccess.Write);
@@ -219,7 +212,7 @@ namespace _2048
                     fs = new FileStream("save.dat", FileMode.Create, FileAccess.Write);
                 }
 
-                BinaryFormatter bf = new BinaryFormatter();
+                var bf = new BinaryFormatter();
 
                 bf.Serialize(fs, sb);
                 fs.Close();
@@ -232,7 +225,7 @@ namespace _2048
 
         private void clearRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            table.ResetRecord();
+            _table.ResetRecord();
             ShowTable();
         }
     }

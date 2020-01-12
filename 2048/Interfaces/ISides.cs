@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _2048.Classes;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace _2048.Interfaces
 {

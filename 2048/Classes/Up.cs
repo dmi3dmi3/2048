@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using _2048.Interfaces;
-using System.Drawing;
 
 namespace _2048.Classes
 {
@@ -23,17 +18,10 @@ namespace _2048.Classes
             Y2 = 3;     
         }
 
-        public bool Check(int i)
-        {
-            return i <= Y2;
-        }
-        public Point Get(Point p)
-        {
-            return new Point(p.X, p.Y - 1);
-        }
-        public int Change(int i)
-        {
-            return ++i;
-        }
+        public bool Check(int i) => i <= Y2;
+
+        public Point Get(Point p) => new Point(p.X, p.Y - 1);
+
+        public int Change(int i) => ++i;
     }
 }
